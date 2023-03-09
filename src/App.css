@@ -120,7 +120,13 @@ height: 250px;
       gap: 1rem;
   }
 }
-@media(max-width:600px){
+@media(max-width:400px){
+  .product-flex{
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+  }
+}
+@media(max-width:200px){
   .product-flex{
       grid-template-columns: repeat(1, 1fr);
       gap: 1rem;
