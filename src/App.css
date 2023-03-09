@@ -316,6 +316,25 @@ height: 250px;
   flex-basis: 20%;
   height: fit-content;
   margin-top: 40px;
+  text-align: center;
+}
+.checkout-btn{
+  margin-bottom: 20px;
+}
+.checkout-btn button{
+  margin: 0 10px;
+}
+.checkout-btn button:first-child{
+  background-color: var(--main);
+  border: none;
+  padding: 8px;
+  color: white;
+}
+.checkout-btn button:last-child{
+  background-color: black;
+  border: none;
+  padding: 8px;
+  color: white;
 }
 @media(max-width: 600px){
   .all-cart{

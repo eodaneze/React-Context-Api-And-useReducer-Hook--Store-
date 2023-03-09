@@ -1,11 +1,10 @@
-import React,{useContext} from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import {BsMinecartLoaded} from "react-icons/bs";
+import { BsMinecartLoaded } from "react-icons/bs";
 import CartContext from "../context/cart/CartContext";
 
-
 const Navbar = () => {
-  const {cartItems} =  useContext(CartContext);
+  const { cartItems } = useContext(CartContext);
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
@@ -32,17 +31,17 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-              <Link to="/cart" className="link">
+                <Link to="/cart" className="link">
                   <h5>
-                    <span><BsMinecartLoaded /></span>
+                    <span>
+                      <BsMinecartLoaded />
+                    </span>
                     <span className="count">
-                        {
-                           cartItems.length > 0 ? (
-                               <b className="count-1">{cartItems.length}</b>
-                           ): (
-                              <b>0</b>
-                           ) 
-                        }
+                      {cartItems.length > 0 ? (
+                        <b className="count-1">{cartItems.length}</b>
+                      ) : (
+                        <b>0</b>
+                      )}
                     </span>
                   </h5>
                 </Link>

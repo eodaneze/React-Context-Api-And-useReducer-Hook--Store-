@@ -34,14 +34,14 @@ const Cart = () => {
             Item in cart: {cartItems.length} */}
 
         {cartItems.length === 0 ? (
-          <h4>
+          <p className="lead">
             <span>Cart is empty</span>
             <span>
-              <Link to="/" className="link mx-4">
+              <Link to="/" className="link fw-bol text-primary mx-2">
                  Continue shopping
               </Link>
             </span>
-          </h4>
+          </p>
         ) : (
           <ul>
             {cartItems.map((product) => (
