@@ -1,15 +1,26 @@
-import React from 'react'
-import { useLocation } from 'react-router-dom'
-import Ratings from '../components/Ratings';
-import { products } from '../data';
+import React, { useContext } from "react";
+import { useLocation } from "react-router-dom";
+import Ratings from "../components/Ratings";
+import { Link } from "react-router-dom";
+import CartContext from "../context/cart/CartContext";
+import { products } from "../data";
 
 const ProductDetails = () => {
+  //Extract these functions from the CartContext
+  const { addToCart, increase, cartItems, sumItems, itemCount } =
+    useContext(CartContext);
+
+  //Check whether the product is in the cart or not
+  const isInCart = (product) => {
+    return !!cartItems.find((product) => product.id === product.id);
+  };
   const location = useLocation();
   const path = location.pathname.split("/")[2];
-  const product = products.find((p) => p.id.toString() === path)
+  const product = products.find((p) => p.id.toString() === path);
   console.log(path);
   return (
-    <div className="container">
+    <>
+      <div className="container">
         <div className="product-content">
           <div className="product-img">
             <img src={product.img} alt="" />
@@ -45,16 +56,52 @@ const ProductDetails = () => {
               )}
             </div>
             <div className="cart">
-              {product.countInStock === 0 ? (
-                <button disabled>Out of stock</button>
+              {!isInCart(product) ? (
+                <button
+                  onClick={() => addToCart(product)}
+                  className="btn btn-success"
+                >
+                  Add To Cart
+                </button>
               ) : (
-                <button>Add To Cart</button>
+                <button
+                  onClick={() => addToCart(product)}
+                  className="btn btn-dark"
+                >
+                  Add To Cart
+                </button>
               )}
+
+              {/* {isInCart(product) && (
+              <button
+                onClick={() => increase(product)}
+                className="btn btn-dark"
+              >
+                Add More
+              </button>
+            )} */}
             </div>
           </div>
         </div>
       </div>
-  )
-}
+      <div className="related-product">
+        <h2>Peopls also liked</h2>
+        <div className="d-flex related-product-content">
+          {products.map((product) => (
+            <div key={product.id}>
+              <div>
+                <img src={product.img} alt="" />
+                <Link to={`/product/${product.id}`} className="link">
+                  <p className="related-product-title">{product.title}</p>
+                </Link>
+                <p className="lead">price: ${product.price}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+};
 
-export default ProductDetails
+export default ProductDetails;
